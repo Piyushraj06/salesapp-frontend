@@ -366,7 +366,7 @@ let qrReader = null;
         evt.currentTarget.classList.add("active");
       }
 
-      const BASE_URL = 'http://localhost:5000/api/salesperson'; // 👈 Backend URL
+      const BASE_URL = 'https://salesapp-backend-1.onrender.com/api/salesperson'; // 👈 Backend URL
 
       // // ================= QR Scanner Logic =================
       
@@ -410,7 +410,7 @@ let qrReader = null;
       return;
     }
 
-    const res = await fetch('http://localhost:5000/api/salesperson/sales', {
+    const res = await fetch('https://salesapp-backend-1.onrender.com/api/salesperson/sales', {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -495,7 +495,7 @@ let qrReader = null;
           date: new Date().toISOString()
         };
       
-        const res = await fetch('http://localhost:5000/api/salesperson/complaints', {
+        const res = await fetch('https://salesapp-backend-1.onrender.com/api/salesperson/complaints', {
           method: "POST",
           headers: {
             "Content-Type": "application/json"

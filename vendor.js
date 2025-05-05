@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Axios instance with interceptors
 const axiosInstance = axios.create({
-    baseURL: 'http://localhost:5000',
+    baseURL: 'https://salesapp-backend-1.onrender.com',
     headers: {
         'Content-Type': 'application/json',
     }

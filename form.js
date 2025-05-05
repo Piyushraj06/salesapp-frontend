@@ -44,7 +44,7 @@ form.addEventListener("submit", (event) => {
     formObject.product_id = productId;
     formObject.delivery_staff_id = document.getElementById("deliveryStaffId").value;
 
-    axios.post("http://localhost:5000/api/submit-sale", formObject)
+    axios.post("https://salesapp-backend-1.onrender.com/api/submit-sale", formObject)
         .then(response => {
             if (response.status === 201) {
                 alert("✅ Form submitted successfully!");

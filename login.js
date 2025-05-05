@@ -80,7 +80,7 @@ document.getElementById('loginForm').addEventListener('submit', async function (
   if (role === 'sales') {
     if (role === 'sales') {
       try {
-        const response = await axios.post('http://localhost:5000/api/auth/login', {
+        const response = await axios.post('https://salesapp-backend-1.onrender.com/api/auth/login', {
           email,
           password,
           staffId: document.getElementById('salesperson-id').value
@@ -104,7 +104,7 @@ document.getElementById('loginForm').addEventListener('submit', async function (
   
    else if (role === 'vendor') {
     try {
-      const response = await axios.post('http://localhost:5000/api/vendor/login', {
+      const response = await axios.post('https://salesapp-backend-1.onrender.com/api/vendor/login', {
         vendorId,
         email,
         password
