@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Salesperson Product QR Scanner</title>
+  <script src="https://unpkg.com/html5-qrcode@2.3.8" type="text/javascript"></script>
+  <link rel="stylesheet" href="salespersonDash.css">
+  <link rel="icon" href="data:,">
+</head>
+<body>
+  <nav>
+    <h3>Sales Dashboard</h3>
+    <div class="welcome">Welcome, Salesperson</div>
+    <div class="logout-button">
+      <button onclick="logout()">Logout</button>
+    </div>
+  </nav>
+
+  <!-- ✅ Full-width Tabs -->
+   <div class="div">
+    <div class="tabs">
+      <div class="tab active" onclick="openTab(event, 'scannerTab')">QR Scanner</div>
+      <div class="tab" onclick="openTab(event, 'salesTab')">Sales</div>
+      <div class="tab" onclick="openTab(event, 'complaintTab')">Complaint</div>
+    </div>
+   </div>
+  
+   <div class="div">
+  <!-- ✅ QR Scanner Section (as-is) -->
+  <div id="scannerTab" class="tab-content active">
+    <div class="container">
+      <h2>Scan Product QR Code</h2>
+
+      <div id="status-message" class="status-info">Ready to scan QR codes</div>
+      <button id="start-camera" class="camera-btn">Start Camera</button>
+
+      <div id="camera-controls" style="display: none;">
+        <button class="camera-btn" id="flip-camera">Flip Camera</button>
+        <button class="camera-btn" id="torch-toggle">Toggle Torch</button>
+      </div>
+
+      <div class="scanner-container">
+        <div id="qr-reader"></div>
+        <div class="scan-overlay">
+          <div class="scan-indicator">Position QR code in frame</div>
+        </div>
+      </div>
+
+      <!-- <button id="manual-scan" onclick="showManualEntry()">Enter Product ID Manually</button> -->
+    </div>
+  </div>
+
+  
+    <!-- ✅ Sales Section -->
+  <div id="salesTab" class="tab-content">
+    <div class="containerSC">
+      <h2>Your Sales Records</h2>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>QR Code</th>
+              <th>Salesperson ID</th>
+              <th>Salesperson Name</th>
+              <th>Salesperson Number</th>
+              <th>Product ID</th>
+              <th>Units Sold</th>
+              <th>Amount</th>
+              <th>UPI Transaction ID</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="sales-table-body">
+            <!-- Sales data from MongoDB will load here -->
+          </tbody>
+        </table>        
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- ✅ Complaint Section -->
+  <div id="complaintTab" class="tab-content">
+    <div class="container">
+      <h2>Raise a Complaint</h2>
+      <form id="complaint-form" onsubmit="submitComplaint(event)">
+        <div class="form-group">
+          <label for="product-id">Product ID</label>
+          <input type="text" id="product-id" name="productId" required />
+        </div>
+        <div class="form-group">
+          <label for="issue">Issue Description</label>
+          <textarea id="issue" name="issue" required></textarea>
+        </div>
+        <button type="submit" class="btn">Submit Complaint</button>
+      </form>
+    </div>
+
+    
+  </div>
+  </div>
+  
+
+  <div class="toast" id="toast-message">Validating QR code...</div>
+
+  <footer>© 2025 Sales Management System</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="salespersonDash.js"></script>
+  
+</body>
+</html>

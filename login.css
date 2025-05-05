@@ -1,0 +1,192 @@
+:root {
+  --header-blue: #004080;
+  --orange-bg: #ff6b00;
+  --form-white: #ffffff;
+  --input-border: #ccc;
+  --input-focus-border: #004080;
+}
+
+body {
+  background: var(--orange-bg);
+  font-family: 'Segoe UI', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+}
+
+.login-container {
+  background: var(--form-white);
+  padding: 2rem;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: var(--header-blue);
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  color: #333;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+input,
+select {
+  width: 90%;
+  padding: 12px 14px;
+  border: 1px solid var(--input-border);
+  padding-left: 36px;
+  border-radius: 8px;
+  background: #fff;
+  color: #333;
+  font-size: 14px;
+  outline: none;
+  transition: border 0.3s ease;
+  margin-top: 5px;
+}
+
+input:focus,
+select:focus {
+  border-color: var(--input-focus-border);
+}
+
+.input-icon {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: var(--input-border);
+  font-size: 16px;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background: var(--header-blue);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 1.5rem;
+}
+
+button:hover {
+  background: #003366;
+}
+
+.footer {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 14px;
+  color: #333;
+}
+
+.footer a {
+  color: var(--header-blue);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* ✅ Fixed Remember Password Layout */
+.remember-password {
+  display: flex;
+  color: #004080;
+  font-weight: bold;
+  align-items: center;
+  margin-bottom: 15px;
+  gap: 6px; /* Small space between label and checkbox */
+}
+
+.remember-password input[type="checkbox"] {
+  margin: 0;
+  order: 2;
+  transform: scale(1.1); /* Slightly larger checkbox */
+}
+
+.remember-password label {
+  margin: 0;
+  order: 1;
+  cursor: pointer;
+  white-space: nowrap;
+  font-size: 14px;
+}
+
+/* ✅ Responsive Design */
+
+/* Small Devices - Mobiles */
+@media screen and (max-width: 480px) {
+  .login-container {
+    padding: 1.5rem;
+    max-width: 90%;
+  }
+
+  input, select {
+    width: 100%;
+    padding-left: 34px;
+    font-size: 13px;
+  }
+
+  button {
+    font-size: 15px;
+  }
+
+  .remember-password {
+    gap: 4px;
+    font-size: 13px;
+  }
+
+  .remember-password label {
+    font-size: 13px;
+  }
+
+  .remember-password input[type="checkbox"] {
+    transform: scale(1);
+  }
+}
+
+/* Tablets */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .login-container {
+    padding: 2rem;
+    max-width: 80%;
+  }
+
+  input, select {
+    width: 100%;
+  }
+}
+
+/* Laptops and Desktops */
+@media screen and (min-width: 769px) {
+  .login-container {
+    max-width: 400px;
+  }
+}

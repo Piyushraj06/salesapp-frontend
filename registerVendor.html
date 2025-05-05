@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registration | Sales Management</title>
+  <link rel="stylesheet" href="register.css">
+</head>
+<body>
+
+  <header>
+    <nav>
+      <div class="logo">
+        <h1>Sales Management</h1>
+      </div>
+    </nav>
+  </header>
+
+  <section class="registration">
+    <h2>Register as a Vendor</h2>
+    
+    <div class="form-container">
+      <!-- Vendor Registration Form -->
+      <div class="form-section">
+        <h3>Vendor Registration</h3>
+        <form id="vendorRegisterForm" class="registration-form"> <!-- ✅ ID corrected -->
+          <label for="vendorName">Full Name</label>
+          <input type="text" id="vendorName" placeholder="Enter your name" required />
+        
+          <label for="vendorEmail">Email</label>
+          <input type="email" id="vendorEmail" placeholder="Enter your email" required />
+        
+          <label for="vendorPhone">Phone Number</label>
+          <input type="tel" id="vendorPhone" placeholder="Enter your phone number" required 
+                 pattern="^\d{10}$" title="Phone number must be exactly 10 digits" />
+        
+          <label for="vendorId">Vendor ID</label>
+          <input type="text" id="vendorId" placeholder="e.g. 123456" required 
+                 pattern="^\d{6}$" title="Format must be 6 digits underscore and digit(s) like 123456" />
+        
+          <label for="vendorPassword">Password</label>
+          <input type="password" id="vendorPassword" 
+                 autocomplete="new-password"
+                 placeholder="Create a password" required
+                 pattern="^(?=.*[A-Z])(?=.*[\W_]).{8,}$"
+                 title="Password must be at least 8 characters, include one uppercase letter and one special character">
+
+          <label for="vendorConfirmPassword">Confirm Password</label>
+          <input type="password" id="vendorConfirmPassword" 
+                 autocomplete="new-password"
+                 placeholder="Confirm password" required>
+        
+          <button type="submit" class="submit-btn">Register as Vendor</button>
+        </form>
+        
+      </div>
+    </div>
+
+    <p class="redirect-text">
+      Already registered? <a href="index.html">Login</a>
+    </p>
+  </section>
+
+  <footer>
+    <p>© 2025 Sales Management System. All rights reserved.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="registerVendor.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vendor Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="vendor.css">
+  <style>
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .tabs { display: flex; gap: 10px; margin-bottom: 20px; cursor: pointer; }
+    .tab { padding: 10px 20px; background-color: #ddd; border-radius: 5px; }
+    .tab.active { background-color: #4285f4; color: white; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Vendor Dashboard</h1>
+    <div class="logout-button">
+      <button onclick="logout()">Logout</button>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="dashboard-wrapper">
+      <h2>Welcome, <span id="vendorName">Vendor</span>!</h2>
+
+      <div class="stats-container">
+        <div class="stat-card">
+          <h3>Total QR Received</h3>
+          <p id="totalQR">Loading...</p>
+        </div>
+        <!-- <div class="stat-card">
+          <h3>QR Assigned</h3>
+          <p id="assignedQR">Loading...</p>
+        </div>
+        <div class="stat-card">
+          <h3>QR Remaining</h3>
+          <p id="remainingQR">Loading...</p>
+        </div> -->
+      </div>
+      
+      <!-- Tabs -->
+      <div class="tabs" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <div class="tab active" onclick="openTab(event, 'vendorTab')">QR Assigned by Admin</div>
+          <div class="tab" onclick="openTab(event, 'distributorTab')">Assign QR to Distributors</div>
+          <div class="tab" onclick="openTab(event, 'salesTab')">Scanned QR Sales Data</div>
+        </div>
+
+        <!-- Global Search Bar -->
+        <div class="search-container" style="margin: 10px 0; margin-left: 160px;">
+          <input 
+            type="text" 
+            id="globalSearchInput" 
+            placeholder="Search Product ID, Vendor ID, etc." 
+            style="width: 180px; padding: 12px; border: 1px solid #ccc; border-radius: 4px;">
+          <button 
+            onclick="performGlobalSearch()" 
+            style="padding: 12px 16px; margin-left: 8px; background-color: #4285f4; color: white; border: none; border-radius: 4px; cursor: pointer;">
+            Search
+          </button>
+        </div>
+
+        <!-- Search Results -->
+        <div id="searchResults" style="margin-top: 20px;"></div>
+      </div>
+
+      <!-- QR Assigned by Admin (Read-Only) -->
+      <div id="vendorTab" class="tab-content active">
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Vendor ID</th>
+                <th>QR Start Number</th>
+                <th>QR End Number</th>
+                <th>Quantity</th>
+              </tr>
+            </thead>
+            <tbody id="initialAssignmentTableBody">
+              <!-- Populated dynamically -->
+            </tbody>
+          </table>
+          
+          <!-- Vendor Tab Pagination Controls -->
+          <div class="pagination-controls">
+            <button class="prev" id="vendorPrevBtn" onclick="prevVendorPage()">Previous</button>
+            <span id="vendorPageInfo">Page 1 of 1</span>
+            <button class="next" id="vendorNextBtn" onclick="nextVendorPage()">Next</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Assign QR to Distributors Section -->
+      <div id="distributorTab" class="tab-content">
+        <div class="qr-form">
+          <input type="text" id="distributorIdInput" placeholder="Distributor ID">
+          <input type="text" id="qrStartInput" placeholder="QR Start Number">
+          <input type="text" id="qrEndInput" placeholder="QR End Number">
+          <input type="number" id="qrQuantityInput" placeholder="Quantity">
+          <button id="assignButton" onclick="assignQR()">Assign QR</button>
+          <button id="cancelButton" onclick="cancelEdit()" style="display: none; background-color: #6c757d;">Cancel</button>
+        </div>
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Vendor Name</th>
+                <th>Vendor ID</th>
+                <th>Distributor ID</th>
+                <th>Distributor Name</th>
+                <th>QR Start Number</th>
+                <th>QR End Number</th>
+                <th>Quantity</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            
+            <tbody id="distributorAssignmentTableBody">
+              <!-- Populated dynamically -->
+            </tbody>
+          </table>
+          
+          <!-- Distributor Tab Pagination Controls -->
+          <div class="pagination-controls">
+            <button class="prev" id="distributorPrevBtn" onclick="prevDistributorPage()">Previous</button>
+            <span id="distributorPageInfo">Page 1 of 1</span>
+            <button class="next" id="distributorNextBtn" onclick="nextDistributorPage()">Next</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scanned QR Sales Data Section -->
+      <div id="salesTab" class="tab-content">
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>QR Code</th>
+                <th>Salesperson ID</th>
+                <th>Salesperson Name</th>
+                <th>Salesperson Number</th>
+                <th>Product ID</th>
+                <th>Units Sold</th>
+                <th>Amount</th>
+                <th>UPI Transaction ID</th>
+                <th>Status</th>
+                <th>Confirm</th>
+              </tr>
+            </thead>
+            <tbody id="scannedQrData">
+              <!-- Populated from MongoDB -->
+            </tbody>
+          </table>
+          
+          <!-- Sales Tab Pagination Controls -->
+          <div class="pagination-controls">
+            <button class="prev" id="salesPrevBtn" onclick="prevSalesPage()">Previous</button>
+            <span id="salesPageInfo">Page 1 of 1</span>
+            <button class="next" id="salesNextBtn" onclick="nextSalesPage()">Next</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Sales Management System. All rights reserved.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="vendor.js"></script>
+</body>
+</html>

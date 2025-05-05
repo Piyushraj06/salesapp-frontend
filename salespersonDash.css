@@ -1,0 +1,686 @@
+:root {
+  --header-blue: #004080;
+  --orange-bg: #ff6b00;
+  --form-white: #ffffff;
+  --success-green: #28a745;
+  --warning-yellow: #ffc107;
+  --error-red: #dc3545;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--orange-bg);
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+nav {
+  background: var(--header-blue);
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.5rem;
+  position: relative;
+}
+
+.welcome-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logout-button button {
+  padding: 8px 16px;
+  font-size: 1rem;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.logout-button button:hover {
+  background-color: #d32f2f;
+}
+
+.container {
+  flex: 1;
+  padding: 2rem;
+  max-width: 400px;
+  margin: 0 auto;
+  width: 90%;
+  background: var(--form-white);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.15);
+}
+
+.containerSC {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1250px;
+  margin: 0 auto;
+  width: 90%;
+  background: var(--form-white);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.15);
+}
+
+#qr-reader {
+  width: 100%;
+  height: auto;
+  margin: 1rem auto;
+  border: 2px solid var(--header-blue);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+#camera-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.camera-btn {
+  background: var(--header-blue);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  flex: 1;
+  margin: 0 0.25rem;
+}
+
+.scan-indicator {
+  text-align: center;
+  margin: 1rem 0;
+  padding: 0.5rem;
+  border-radius: 4px;
+  background-color: var(--warning-yellow);
+  color: #333;
+  font-weight: bold;
+}
+
+.error-message {
+  background-color: var(--error-red);
+  color: white;
+  padding: 0.5rem;
+  border-radius: 4px;
+  margin: 0.5rem 0;
+  text-align: center;
+}
+
+.scanner-container {
+  position: relative;
+}
+
+.scan-overlay {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  pointer-events: none;
+}
+
+footer {
+  background: var(--header-blue);
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  margin-top: auto;
+}
+
+h2 {
+  color: var(--header-blue);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--success-green);
+  color: white;
+  padding: 1rem;
+  border-radius: 5px;
+  z-index: 1000;
+  display: none;
+}
+
+.hidden {
+  display: none;
+}
+
+#status-message {
+  margin: 1rem 0;
+  padding: 0.5rem;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.status-info {
+  background-color: #17a2b8;
+  color: white;
+}
+
+.status-warning {
+  background-color: var(--warning-yellow);
+  color: #333;
+}
+
+.status-error {
+  background-color: var(--error-red);
+  color: white;
+}
+
+.status-success {
+  background-color: var(--success-green);
+  color: white;
+}
+
+.tabs {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  gap: 10px;
+  border-bottom: 1px solid #ddd;
+  background-color: white;
+}
+
+.tab {
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #f1f1f1;
+  border: 1px solid #ddd;
+  border-bottom: none;
+  margin-right: 5px;
+  border-radius: 8px 8px 0 0;
+}
+
+.div {
+  height: 100%;
+  width: 100%;
+  max-width: 1200px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+  padding-bottom: 30px;
+  margin-top: 5px;
+  margin-left: 90px;
+}
+
+.tab.active {
+  background-color: #3a7bd5;
+  color: white;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.table-container {
+  overflow-x: auto;
+  margin-top: 1rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+table, th, td {
+  border: 1px solid #ccc;
+}
+
+th, td {
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background-color: #2a74df;
+  color: white;
+}
+
+td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+label {
+  font-weight: bold;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.btn {
+  background-color: #004080;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #003060;
+}
+
+/* ===================== MEDIA QUERIES ===================== */
+
+/* Large Desktops (1200px and up) */
+@media (min-width: 1200px) {
+  .containerSC {
+    max-width: 1250px;
+  }
+  
+  .div {
+    margin-left: 90px;
+    max-width: 1200px;
+  }
+  
+  nav {
+    padding: 1rem 3rem;
+  }
+  
+  .tabs {
+    max-width: 1200px;
+  }
+  
+  .btn {
+    min-width: 120px;
+  }
+}
+
+/* Medium Desktops (992px - 1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .containerSC {
+    max-width: 960px;
+  }
+  
+  .div {
+    margin-left: 50px;
+    max-width: 900px;
+  }
+  
+  nav {
+    padding: 1rem 2rem;
+  }
+  
+  .tabs {
+    max-width: 960px;
+  }
+}
+
+/* Small Laptops / Desktops (768px - 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .containerSC {
+    max-width: 720px;
+    padding: 1.5rem;
+  }
+  
+  .container {
+    max-width: 350px;
+  }
+  
+  .div {
+    margin-left: 30px;
+    padding: 15px;
+    max-width: 700px;
+  }
+  
+  nav {
+    padding: 0.8rem 1.5rem;
+    font-size: 1.3rem;
+  }
+  
+  .welcome-container {
+    gap: 0.7rem;
+  }
+  
+  .tabs {
+    max-width: 720px;
+    gap: 5px;
+  }
+  
+  .tab {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+  }
+  
+  table {
+    font-size: 0.9rem;
+  }
+  
+  th, td {
+    padding: 8px;
+  }
+  
+  .btn {
+    padding: 8px 16px;
+  }
+}
+
+/* Tablets (576px - 767px) */
+@media (min-width: 576px) and (max-width: 767px) {
+  .containerSC {
+    max-width: 540px;
+    padding: 1.2rem;
+    width: 95%;
+  }
+  
+  .container {
+    max-width: 320px;
+    padding: 1.2rem;
+  }
+  
+  .div {
+    margin-left: 15px;
+    padding: 12px;
+    max-width: 520px;
+  }
+  
+  nav {
+    padding: 0.7rem 1.2rem;
+    font-size: 1.2rem;
+    flex-wrap: wrap;
+  }
+  
+  .welcome-container {
+    margin-bottom: 0.5rem;
+  }
+  
+  .logout-button button {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+  }
+  
+  .tabs {
+    max-width: 540px;
+    flex-wrap: wrap;
+    gap: 3px;
+  }
+  
+  .tab {
+    padding: 7px 12px;
+    font-size: 0.85rem;
+    margin-right: 3px;
+  }
+  
+  table {
+    font-size: 0.85rem;
+  }
+  
+  th, td {
+    padding: 7px;
+  }
+  
+  .btn {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+  
+  .form-group {
+    margin-bottom: 0.8rem;
+  }
+  
+  input, textarea {
+    padding: 7px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Large Mobile Phones (400px - 575px) */
+@media (min-width: 400px) and (max-width: 575px) {
+  .containerSC, .container {
+    max-width: 95%;
+    padding: 1rem;
+  }
+  
+  .div {
+    margin-left: 0;
+    padding: 10px;
+    margin-top: 3px;
+  }
+  
+  nav {
+    padding: 0.6rem 1rem;
+    font-size: 1.1rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .welcome-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    width: 100%;
+  }
+  
+  .logout-button {
+    width: 100%;
+  }
+  
+  .logout-button button {
+    width: 100%;
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+  
+  .tabs {
+    flex-direction: column;
+    gap: 2px;
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .tab {
+    border-radius: 4px;
+    margin-right: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+  
+  table {
+    font-size: 0.8rem;
+  }
+  
+  th, td {
+    padding: 6px;
+  }
+  
+  .btn {
+    width: 100%;
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+  
+  h2 {
+    font-size: 1.3rem;
+  }
+  
+  .form-group {
+    margin-bottom: 0.7rem;
+  }
+  
+  footer {
+    padding: 0.7rem;
+    font-size: 0.9rem;
+  }
+  
+  #status-message {
+    font-size: 0.9rem;
+    padding: 0.4rem;
+  }
+}
+
+/* Small Mobile Phones (up to 399px) */
+@media (max-width: 399px) {
+  .containerSC, .container {
+    max-width: 95%;
+    padding: 0.8rem;
+  }
+  
+  .div {
+    margin-left: 0;
+    padding: 8px;
+    margin-top: 2px;
+  }
+  
+  nav {
+    padding: 0.5rem 0.8rem;
+    font-size: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .welcome-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+    margin-bottom: 0.4rem;
+    width: 100%;
+  }
+  
+  .logout-button {
+    width: 100%;
+  }
+  
+  .logout-button button {
+    width: 100%;
+    padding: 6px;
+    font-size: 0.85rem;
+  }
+  
+  .tabs {
+    flex-direction: column;
+    gap: 2px;
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .tab {
+    border-radius: 4px;
+    margin-right: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 0.85rem;
+    padding: 6px;
+  }
+  
+  table {
+    font-size: 0.75rem;
+  }
+  
+  th, td {
+    padding: 5px 3px;
+  }
+  
+  .btn {
+    width: 100%;
+    padding: 7px;
+    font-size: 0.85rem;
+  }
+  
+  h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.7rem;
+  }
+  
+  .form-group {
+    margin-bottom: 0.6rem;
+  }
+  
+  label {
+    font-size: 0.85rem;
+  }
+  
+  input, textarea {
+    padding: 6px;
+    font-size: 0.85rem;
+    margin-top: 3px;
+  }
+  
+  footer {
+    padding: 0.6rem;
+    font-size: 0.85rem;
+  }
+  
+  #camera-controls {
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .camera-btn {
+    margin: 0;
+    padding: 6px;
+    font-size: 0.85rem;
+  }
+  
+  #status-message {
+    font-size: 0.85rem;
+    padding: 0.3rem;
+    margin: 0.7rem 0;
+  }
+  
+  .error-message {
+    font-size: 0.85rem;
+    padding: 0.4rem;
+  }
+}
+
+/* For print media */
+@media print {
+  body {
+    background: white;
+  }
+  
+  .container, .containerSC {
+    box-shadow: none;
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  nav, footer, .logout-button, #camera-controls {
+    display: none;
+  }
+  
+  table {
+    page-break-inside: avoid;
+  }
+  
+  .div {
+    margin-left: 0;
+    box-shadow: none;
+  }
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stove Campaign Form</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="form.css">
+</head>
+<body>
+  <div class="form-container">
+    <div class="form-header">
+      <h2>Stove Campaign Form</h2>
+      <div class="product-id">Product ID: <span id="productId"></span></div>
+    </div>
+    
+    <form id="stoveCampaignForm">
+      <label>
+        Delivery Staff ID / డెలివరీ స్టాఫ్ ఐడి:
+        <input type="text" id="deliveryStaffId" name="delivery_staff_id" pattern="^\d{6}_\d{1}$" title="6 digits followed by an underscore and 1 digit (e.g. 123456_1)" readonly required  />
+      </label>
+
+      <label>
+        Customer Name / కస్టమర్ పేరు:
+        <input type="text" id="customerName" name="customer_name" required />
+      </label>
+
+      <label>
+        Customer Registered Mobile No / కస్టమర్ రిజిస్టర్డ్ మొబైల్ నంబర్:
+        <input type="tel" id="customerMobileNo" name="customer_mobile_no" pattern="[0-9]{10}" required />
+      </label>
+
+      <label>
+        Stove Order ID / స్టోవ్ ఆర్డర్ ఐడీ:
+        <input type="text" id="stoveOrderId" name="stove_order_id" required />
+      </label>
+
+      <label>
+        Delivery/Showroom Staff Phone Number / డెలివరీ/షోరూమ్ స్టాఫ్ ఫోన్ నంబర్:
+        <input type="tel" id="staffPhoneNumber" name="staff_phone_number" pattern="[0-9]{10}" required />
+      </label>
+
+      <label>
+        Delivery/Showroom Staff UPI ID (if phone number is not linked to UPI) / డెలివరీ/షోరూమ్ స్టాఫ్ యుపీఐ ఐడీ (ఫోన్ నంబర్ యుపీఐ తో లింక్ కాకపోతే):
+        <input type="text" id="staffUpiId" name="staff_upi_id" />
+      </label>
+
+      <button type="submit" id="submitBtn" disabled>Submit</button>
+    </form>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="form.js"></script>
+</body>
+</html>

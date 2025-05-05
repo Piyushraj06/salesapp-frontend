@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="admin.css"/>
+</head>
+<body>
+
+  <header>
+    <h1>Admin Dashboard</h1>
+    <div class="logout-button">
+      <button onclick="logout()">Logout</button>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="dashboard-wrapper">
+      <h2>Welcome, Admin!</h2>
+
+      <!-- Tabs -->
+      <div class="tabs" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <div class="tab active" onclick="openTab(event, 'qrAssignmentTab')">QR Assignment</div>
+          <div class="tab" onclick="openTab(event, 'salesDataTab')">Sales Data</div>
+          <div class="tab" onclick="openTab(event, 'complaintsTab')">Complaints</div>
+        </div>
+
+        <!-- Global Search Bar -->
+        <div class="search-container" style="margin: 10px 0; margin-left: 250px;">
+          <input 
+            type="text" 
+            id="globalSearchInput" 
+            placeholder="Search Product ID, Vendor ID, etc." 
+            style="width: 180px; padding: 12px; border: 1px solid #ccc; border-radius: 4px;">
+          <button 
+            onclick="performGlobalSearch()" 
+            style="padding: 12px 16px; margin-left: 8px; background-color: #4285f4; color: white; border: none; border-radius: 4px; cursor: pointer;">
+            Search
+          </button>
+        </div>
+      </div>
+
+      <!-- Search Results -->
+      <div id="searchResults" style="margin-top: 20px; width: 100%; box-sizing: border-box;"></div>
+
+      <!-- QR Assignment Tab -->
+      <div id="qrAssignmentTab" class="tab-content active">
+        <div class="div">QR Assign By Admin To Vendor</div>
+
+        <!-- QR Assign Form with Cancel Button -->
+        <div class="qr-form">
+          <input type="text" id="vendorId" placeholder="Vendor ID" required />
+          <input type="number" id="quantity" placeholder="Quantity" required />
+          <input type="text" id="qrStartInput" placeholder="QR Start Number" required />
+          <input type="text" id="qrEndInput" placeholder="QR End Number" required />
+          <button id="assignButton" onclick="assignQR()">Assign QR</button>
+          <button id="cancelButton" onclick="cancelEdit()" style="display: none; background-color: #6c757d; color: white;">Cancel</button>
+        </div>
+
+        <!-- Admin to Vendor Table -->
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Vendor ID</th>
+                <!-- <th>Vendor Name</th>
+                <th>Vendor Phone</th> -->
+                <th>QR Start</th>
+                <th>QR End</th>
+                <th>Quantity</th>
+              </tr>
+            </thead>
+            <tbody id="adminAssignmentTableBody"></tbody>
+          </table>
+        </div>
+        
+        <!-- Admin Table Pagination Controls -->
+        <div class="pagination-controls" id="adminPaginationControls">
+          <button class="prev" onclick="prevAdminPage()">Previous</button>
+          <span id="adminPageInfo">Page 1 of 1</span>
+          <button class="next" onclick="nextAdminPage()">Next</button>
+        </div>
+
+        <!-- Vendor to Distributor Table -->
+        <div class="div">QR Assign By Vendor To Distributor</div>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Vendor Name</th>
+                <th>Vendor ID</th>
+                <th>Distributor ID</th>
+                <th>Distributor Name</th>
+                <th>QR Start Number</th>
+                <th>QR End Number</th>
+                <th>Quantity</th>
+              </tr>
+            </thead>
+            <tbody id="distributorAssignmentTableBody"></tbody>
+          </table>
+        </div>
+        
+        <!-- Distributor Table Pagination Controls -->
+        <div class="pagination-controls" id="distributorPaginationControls">
+          <button class="prev" onclick="prevDistributorPage()">Previous</button>
+          <span id="distributorPageInfo">Page 1 of 1</span>
+          <button class="next" onclick="nextDistributorPage()">Next</button>
+        </div>
+      </div>
+
+      <!-- Sales Data Tab -->
+      <div id="salesDataTab" class="tab-content">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>QR Code</th>
+              <th>Salesperson ID</th>
+              <th>Salesperson Name</th>
+              <th>Salesperson Number</th>
+              <th>Product ID</th>
+              <th>Units Sold</th>
+              <th>Amount</th>
+              <th>UPI Transaction ID</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="salesDataTableBody">
+            <!-- Data fetched from MongoDB -->
+          </tbody>
+        </table>
+        
+        <!-- Sales Data Pagination Controls -->
+        <div class="pagination-controls" id="salesPaginationControls">
+          <button class="prev" id="salesPrevBtn" onclick="prevSalesPage()">Previous</button>
+          <span id="salesPageInfo">Page 1 of 1</span>
+          <button class="next" id="salesNextBtn" onclick="nextSalesPage()">Next</button>
+        </div>
+      </div>
+      
+      <!-- Complaints Tab -->
+      <div id="complaintsTab" class="tab-content">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Salesperson ID</th>
+              <th>Salesperson Number</th>
+              <th>Product ID</th>
+              <th>Complaint Description</th>
+            </tr>
+          </thead>
+          <tbody id="complaintsTableBody">
+            <!-- Data fetched from MongoDB -->
+          </tbody>
+        </table>
+        
+        <!-- Complaints Pagination Controls -->
+        <div class="pagination-controls" id="complaintsPaginationControls">
+          <button class="prev" id="complaintsPrevBtn" onclick="prevComplaintsPage()">Previous</button>
+          <span id="complaintsPageInfo">Page 1 of 1</span>
+          <button class="next" id="complaintsNextBtn" onclick="nextComplaintsPage()">Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="admin.js"></script>
+
+</body>
+</html>

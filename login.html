@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | Sales Management</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+  <div class="login-container">
+    <h2>Welcome Back</h2>
+    <form id="loginForm">
+      <!-- Salesperson ID (hidden by default) -->
+      <div id="salesperson-id-group" class="form-group" style="display: none;">
+        <label for="salesperson-id">Salesperson ID</label>
+        <div class="input-wrapper">
+          <i class="fas fa-id-card input-icon"></i>
+          <input type="text" id="salesperson-id" placeholder="Enter Salesperson ID">
+        </div>
+      </div>
+
+      <div id="vendor-id-group" class="form-group" style="display: none;">
+        <label for="vendor-id">Vendor ID</label>
+        <div class="input-wrapper">
+          <i class="fas fa-id-card input-icon"></i>
+          <input type="text" id="vendor-id" placeholder="Enter Vendor ID">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <div class="input-wrapper">
+          <i class="fas fa-envelope input-icon"></i>
+          <input type="email" id="email" required placeholder="Enter your email">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="input-wrapper">
+          <i class="fas fa-lock input-icon"></i>
+          <input type="password" id="password" required placeholder="••••••••">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="role">Role</label>
+        <div class="input-wrapper">
+          <i class="fas fa-user-tag input-icon"></i>
+          <select id="role" required>
+            <option value="admin">Admin</option>
+            <option value="vendor">Vendor</option>
+            <option value="sales">Sales Person</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- <div class="remember-password">
+        <label for="remember-password">Remember Password</label>
+        <input type="checkbox" id="remember-password">
+      </div> -->
+
+      <button type="submit">
+        <span>Sign In</span>
+        <i class="fas fa-arrow-right"></i>
+      </button>
+    </form>
+
+    <div class="footer">
+      <p id="signup-text-sales" style="display: none;">Don't have an account? <a href="registerSales.html" id="signup-link-sales">Sign Up</a></p>
+      <p id="signup-text-vendor" style="display: none;">Don't have an account? <a href="registerVendor.html" id="signup-link-vendor">Sign Up</a></p>
+    </div>
+
+    <!-- Error message div -->
+    <div id="error-message" class="error-message" style="display: none;"></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/jwt-simple@0.5.6/jwt-simple.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="login.js"></script>
+</body>
+</html>
