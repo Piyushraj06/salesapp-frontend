@@ -127,7 +127,7 @@ document.getElementById('loginForm').addEventListener('submit', async function (
     }
   } else if (role === 'admin') {
     const adminData = [
-      { email: 'piyushraj577mth@gmail.com', password: 'Piyush123' },
+      { email: 'piyushraj577mth@gmail.com', password: 'Piyush@123' },
       { email: 'sido@gmail.com', password: 'Sido@123' },
       { email: 'admin1@gmail.com', password: 'Admin@123' }
     ];
