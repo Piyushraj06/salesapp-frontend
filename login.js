@@ -126,7 +126,11 @@ document.getElementById('loginForm').addEventListener('submit', async function (
       }
     }
   } else if (role === 'admin') {
-    const adminData = { email: 'piyushraj577mth@gmail.com', password: 'Piyush123' };
+    const adminData = [
+      { email: 'piyushraj577mth@gmail.com', password: 'Piyush123' },
+      { email: 'sido@gmail.com', password: 'sido@123' },
+      { email: 'admin1@gmail.com', password: 'admin@123' }
+    ];
 
     if (email === adminData.email && password === adminData.password) {
       const adminToken = createToken({ email, role: 'admin' });
